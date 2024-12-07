@@ -389,7 +389,7 @@ app.post("/api/auth/forgot-password", async (req, res) => {
     await user.save();
 
     // Construct the reset URL
-    const resetUrl = `http://localhost:5173/reset-password/${resetToken}`;
+    const resetUrl = `https://zingy-longma-37ed1b.netlify.app/reset-password/${resetToken}`;
     const mailOptions = {
       to: user.email,
       subject: "Reset Your Twiller Password",
@@ -512,7 +512,7 @@ app.post("/api/auth/request-reset", async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000; // Token expires in 1 hour
     await user.save();
 
-    const resetUrl = `http://localhost:5173/reset-password/${resetToken}`;
+    const resetUrl = `https://zingy-longma-37ed1b.netlify.app/reset-password/${resetToken}`;
     const mailOptions = {
       to: user.email,
       subject: "Password Reset Request",
