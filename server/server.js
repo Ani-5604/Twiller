@@ -20,7 +20,7 @@ import session from 'express-session';
 import multer from 'multer';
 import User from './models/user.model.js';  // Adjust the path according to your project structure
 import jwt from 'jsonwebtoken';  // Add this import at the top
-import bcrypt from 'bcrypt'; // Make sure bcrypt is imported at the top of your file
+import bcrypt from 'bcryptjs'; // Make sure bcrypt is imported at the top of your file
 import crypto from 'crypto';
 
 import fs from 'fs';
