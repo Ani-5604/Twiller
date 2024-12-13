@@ -4,7 +4,7 @@ const daisyUIThemes = require('daisyui/src/theming/themes');
 module.exports = {
     content: [
         './src/**/*.{js,jsx,ts,tsx}',
-         "../index.html",// Adjust paths according to your project structure
+         "./src/index.html",// Adjust paths according to your project structure
     ],
     theme: {
         extend: {
