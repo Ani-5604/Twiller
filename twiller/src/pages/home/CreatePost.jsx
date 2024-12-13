@@ -386,7 +386,7 @@ const CreatePost = () => {
     }    // Log email and OTP values to verify that they're correct
     console.log("Sending OTP for verification:", { email, otp });
     try {
-      const response = await fetch("http://localhost:5000/api/email/verify-otp", {
+      const response = await fetch("/api/email/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),
