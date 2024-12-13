@@ -9,9 +9,11 @@ import { toast } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
 import i18n from "../../i18n";
 import axios from 'axios';
+import { FaVolumeUp } from 'react-icons/fa'; // Import loudspeaker icon from react-icons
 import EmojiPicker from "emoji-picker-react";
 import './Post.css';
-import { FaFileUpload } from "react-icons/fa"; // Importing upload icon
+import { FaHeadphones} from 'react-icons/fa';
+import { FaHeadphonesAlt } from "react-icons/fa";
 const CreatePost = () => {
   // State hooks
   const [text, setText] = useState("");
@@ -29,6 +31,7 @@ const CreatePost = () => {
   const imgRef = useRef(null);
   const audioRef = useRef(null);
   const videoRef = useRef(null);
+  
   const { data: authUser } = useQuery({ queryKey: ["authUser"] });
   const queryClient = useQueryClient();
   const [media, setMedia] = useState({ img: null, audio: null, video: null });
@@ -386,7 +389,7 @@ const CreatePost = () => {
     }    // Log email and OTP values to verify that they're correct
     console.log("Sending OTP for verification:", { email, otp });
     try {
-      const response = await fetch("/api/email/verify-otp", {
+      const response = await fetch("https://twitterclone-twiller.onrender.com/api/email/verify-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, otp }),
@@ -418,26 +421,31 @@ const CreatePost = () => {
         </div>
         <form className="flex flex-col gap-3 w-full" onSubmit={handleSubmit}>
           <textarea
-            className="textarea w-full p-3 text-lg resize-none border-2 border-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="textarea w-full p-3 text-lg resize-none border-2 border-sky-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder={t("What's happening?!")}
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          {media.video && (
-            <div className="relative w-72 mx-auto">
-              {isUploading && (
-                <div className="absolute inset-0 flex justify-center items-center bg-opacity-50 bg-gray-800 rounded-lg">
-                  <div className="spinner"></div>
-                  <span className="upload-percentage">{uploadProgress}%</span>
-                </div>
-              )}
-              <IoCloseSharp
-                className="absolute top-0 right-5  text-white bg-gray-700 p-2 rounded-full cursor-pointer"
-                onClick={() => setMedia((prev) => ({ ...prev, video: null }))}
-              />
-              <video className="w-full rounded-lg" src={media.video}></video>
-            </div>
-          )}
+         {media.video && (
+  <div className="relative w-72 mx-auto">
+    {isUploading && (
+      <div className="absolute inset-0 flex justify-center items-center bg-opacity-50 bg-gray-800 rounded-lg">
+        <div className="spinner"></div>
+        <span className="upload-percentage">{uploadProgress}%</span>
+      </div>
+    )}
+    <IoCloseSharp
+      className="absolute top-0 right-5 text-white bg-sky-700 p-2 rounded-full cursor-pointer"
+      style={{ zIndex: 20 }}  // Ensure it’s above other elements
+      onClick={() => {
+        console.log("Close button clicked");  // Debugging
+        setMedia((prev) => ({ ...prev, video: null }));
+      }}
+    />
+    <video className="w-full rounded-lg" src={media.video}></video>
+  </div>
+)}
+
           {media.img && (
             <div className="relative w-72 mx-auto">
               {isUploading && (
@@ -521,7 +529,7 @@ const CreatePost = () => {
               className="cursor-pointer text-green-500"
               onClick={triggerFileInput}
             >
-              <FaFileUpload size={25} className="text-gray-600 hover:text-blue-500" /> {/* Icon */}
+   <FaHeadphonesAlt size={30} className="text-gray-600 hover:text-blue-500" />
             </span>
           </div>
           {/* Hidden Audio Input */}
