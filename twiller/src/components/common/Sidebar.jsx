@@ -186,7 +186,7 @@ const Sidebar = () => {
                     <TwitterSvg className='px-2 w-12 h-12 rounded-full fill-white hover:bg-stone-900' />
                 </Link>
                 <ul className='flex flex-col gap-3 mt-4'>
-                    <SidebarLink to="/" icon={<MdHomeFilled className="w-8 h-8" />} text={t("Home")} />
+                    <SidebarLink to="/home" icon={<MdHomeFilled className="w-8 h-8" />} text={t("Home")} />
                     <SidebarLink to="/notifications" icon={<IoNotifications className='w-6 h-6' />} text={t("Notifications")} />
                     <SidebarLink to="/explore" icon={<IoSearch className='w-6 h-6' />} text={t("Explore")} />
                     <SidebarLink to="/messages" icon={<IoMail className='w-6 h-6' />} text={t("Messages")} />
